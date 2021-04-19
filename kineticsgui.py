@@ -233,23 +233,7 @@ class FileTab():
         filename = filedialog.askopenfilename()
         self.csvfile.set(filename)
         return
-    import panda as pd
-import glob
-file=input("Enter csv file : ") 
-#here inter path of csv file
-df=pd.read_csv(file)
-filename=input("Enter a file name you want to save")
-#here enter destination path to save csv file
-files = glob.glob(filename) 
-#files is the list of files with same name you entered
-if not files: 
-#if file is empty (no file with filename)
-df.to_csv(filename)
-print('file saved)
-else:
-     #else file exists
-print('file already exists !!')
-    csvchanged(self, *args):
+    def csvchanged(self, *args):
         filename = self.csvfile.get()
         with open(filename, "r") as fileref:
             csvstart = fileref.read(1024)
