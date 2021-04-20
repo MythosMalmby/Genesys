@@ -437,3 +437,15 @@ class KineticsGUI():
 root = Tk()
 KineticsGUI(root)
 root.mainloop()
+
+import panda as pd
+import glob
+file=input(Enter_csv_file)
+df=pd.read_csv(file)
+filename=input(Enter_a_file_name_you_want_to_save)
+files = glob.glob(filename)
+if not files:
+	df.to_csv(filename)
+	print(file_saved)
+else:
+	print(file_already_exists)
