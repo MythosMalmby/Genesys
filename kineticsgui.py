@@ -87,7 +87,9 @@ class SpecTab():
         self.timecanvas = FigureCanvasTkAgg(self.timefigure, master=self.frame)
         self.timecanvas.draw()
         self.timecanvas.get_tk_widget().grid(row=6, column=0, columnspan=2)
-
+        self.writebutton = ttk.Button(self.frame, text="Save",
+                                      command=self.writelines)
+        self.writebutton.grid(row=5,column=0)
     def specselect(self, *args):
         spec = self.speccombo.get()
         if spec == "test":
@@ -126,7 +128,64 @@ class SpecTab():
         starttime = datetime.now()
         # runtime = 0
         self.add_data(starttime)
+        self.writebutton = ttk.Button(self.frame, text="Save",
+                                      command=self.writelines)
         return
+    def savefile(self, *args):
+        additional = self.additionaltext.get("1.0","end").splitlines()
+        if self.analysismode.get() == "Time":
+            self.writerfields = ["Reaction"] + additional + ["Time","Abs"]
+        elif self.analysismode.get() == "Slope":
+            self.writerfields = ["Reaction"] + additional + ["Slope","Slope.Err"]
+        else:
+            # analysismode has not been set to a correct value
+            messagebox.showerror(message="Please set mode of recording.")
+            return
+        with open(self.filename, "w") as fileref:
+            csvdict = DictWriter(fileref, fieldnames=self.writerfields)
+            csvdict.writeheader()
+        self.parent.csvfile.set(self.filename)
+        self.newfile.destroy()
+        return
+    def savefile(self, *args):
+        additional = self.additionaltext.get("1.0","end").splitlines()
+        if self.analysismode.get() == "Time":
+            self.writerfields = ["Reaction"] + additional + ["Time","Abs"]
+        elif self.analysismode.get() == "Slope":
+            self.writerfields = ["Reaction"] + additional + ["Slope","Slope.Err"]
+        else:
+            # analysismode has not been set to a correct value
+            messagebox.showerror(message="Please set mode of recording.")
+            return
+        with open(self.filename, "w") as fileref:
+            csvdict = DictWriter(fileref, fieldnames=self.writerfields)
+            csvdict.writeheader()
+        self.parent.csvfile.set(self.filename)
+        self.newfile.destroy()
+        return
+    def writelines(self, *args):
+        self.reactionnumber.set(self.reactionnumber.get()+1)
+        with open(self.csvfile.get(), "a") as csvfile:
+            csvdict = DictWriter(csvfile, fieldnames=self.writerfields)
+            # Create the dictionary for writing
+            record = {}
+            record["Reaction"] = self.reactionnumber.get()
+            for field in self.promptstrings.keys():
+                record[field] = self.promptstrings[field].get()
+            if self.analysismode.get() == "Time":
+                # Record a line for each timepoint
+                for timepoint, absorbance in zip(self.parent.spectrometer.times,
+                                                 self.parent.spectrometer.absorbance):
+                    record["Time"] = timepoint
+                    record["Abs"] = absorbance
+                    csvdict.writerow(record)
+            elif self.analysismode.get() == "Slope":
+                # All data should be ready to be written to the file.
+                csvdict.writerow(record)
+                # Update the plot in the plotting tab
+                self.parent.plotting.plotanalysis()
+        return
+    # here
 
     def add_data(self, starttime):
         self.absorbance.append(self.spectrometer.reading())
@@ -233,23 +292,7 @@ class FileTab():
         filename = filedialog.askopenfilename()
         self.csvfile.set(filename)
         return
-    import panda as pd
-import glob
-file=input("Enter csv file : ") 
-#here inter path of csv file
-df=pd.read_csv(file)
-filename=input("Enter a file name you want to save")
-#here enter destination path to save csv file
-files = glob.glob(filename) 
-#files is the list of files with same name you entered
-if not files: 
-#if file is empty (no file with filename)
-df.to_csv(filename)
-print('file saved)
-else:
-     #else file exists
-print('file already exists !!')
-    csvchanged(self, *args):
+    def csvchanged(self, *args):
         filename = self.csvfile.get()
         with open(filename, "r") as fileref:
             csvstart = fileref.read(1024)
