@@ -1,0 +1,23 @@
+---
+title: "Soph&Noah"
+author: "Jared Parsons"
+date: "5/6/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+# Sophie
+# The purpose of me and Noah's project was to add a feature that would allow data to be saved as a csv file. There was also the need for this save feature to produce an error message in the event that the file was about to be saved incorrectly. To start the project, we researched the code options on our own and combined information from lots of sources in order to produce a few code lines that we thought might be functional in our existing document. After we had settled on the lines of code to use, it was time to integrate that code into the repository and see if it was functional for our purposes. The first attempt at pasting our code into the repository was not successful due to indention errors; we quickly learned that our code needed to be adjusted to fit the exact language of the rest of the document. Our document was originally written in an older Python language, so our new code needed to be altered so that it made sense with the rest of the text. To fix this, I ran the code over and over again for about an hour, fixing each issue according to the error messages that incurred. After all of the error messages had been resolved, the program ran successfully and our save feature proved to be working as expected. Additionally, our programmed error message was tested and the desired text popped up in the terminal as intended when the file was about to be saved incorrectly.  
+
+
+
+# Noah
+
+
+# The goal of Sophia’s and my part of the groups project was to edit or replace the save feature. The end goal of the program would be that it would Select the file that we want. It would then Save it as a CSV file. We would be able to enter our own name for the file and it should give an error warning if you were trying to write to a file name that doesn’t exist. One of our first steps was finding the place in the code we needed to edit or replace. We then investigated various resources on what the code should look like. We got these from many differing sources and compiled them together into the final code we thought would work for everything we wanted.  After we finished choosing what code to use, we then had to integrate it into the rest of the code in the repository. First, we tried just copping our code into the repository, but this didn’t work because the formatting of our code didn’t match the rest of the code. We ended up having to go through the code line by line fixing the formatting errors in our code to work with the rest of the code in the repository. In the end, our code did as we wanted. It allowed you to save as a csv file. It allowed you to select your own file name and if the data was going to be saved in a file that didn’t exist an error message appeared in the terminal. 
+
