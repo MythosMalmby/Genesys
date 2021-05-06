@@ -1,0 +1,47 @@
+---
+title: "Riley Smith's Final Notebook"
+output: html_notebook
+---
+
+
+The project as a whole that my group worked on was to improve the functionality and quality of life of the Genesys code used in the general biochemistry lab. The projects consisted of three groups and the three tasks the groups had been to implement a slope calculator/improve the graph, improve the save functionality, and move/add a save button to the first tab of the GUI. The part Carson, my partner, and I worked on was moving the save button. Below one can see the code we moved/added to the first tab. 
+
+"def __init__(self, parent):
+        self.parent = parent
+        self.frame = ttk.Frame(parent.notebook)
+        self.parent.notebook.add(self.frame, text="CSV")
+        self.csvfile = StringVar()
+        self.csvfile.trace("w",self.csvchanged)
+        self.writerfields = []
+        self.promptentries = {}
+        self.promptstrings = {}
+        self.promptlabels = {}
+        ttk.Label(self.frame, textvariable=self.csvfile).grid(row=0,
+                                                              column=0,
+                                                              columnspan=2)
+        self.filebutton = ttk.Button(self.frame, text="Select...",
+                                     command=self.fileselect)
+        self.filebutton.grid(row=1,column=0)
+        self.newbutton = ttk.Button(self.frame, text="New File",
+                                    command=self.filenew)
+        self.newbutton.grid(row=1,column=1)
+        self.analysismode = StringVar()
+        self.reactionnumber = IntVar()
+        ttk.Label(self.frame, text="Reaction").grid(row=2,column=0)
+        self.reactionlabel = ttk.Label(self.frame,
+                                       textvariable=self.reactionnumber)
+        self.reactionlabel.grid(row=2,column=1)
+        self.writebutton = ttk.Button(self.frame, text="Save",
+                                      command=self.writelines)
+        self.writebutton.grid(row=13,column=0)"
+        
+After researching on a few different websites we found that adding new code is not as efficient as copying and moving code that you know already works. This saved time and having to troubleshoot various problems by integrating new code with identical functions.
+
+The project as a whole without the save button would have been functional however, one would have to navigate more of the GUI to save the plot and this could cause issues because of the stability of the code as previously described when the project was recommended to us. 
+
+
+ 
+
+
+
+
