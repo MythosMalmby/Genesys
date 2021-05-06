@@ -1,0 +1,29 @@
+---
+title: "Carson Palmer's Final Notebook"
+output: html_notebook
+---
+## 
+
+# The issues Riley and me intended to fix on the enzymekinetics.py program included moving the save button from the second tab to the first tab creating a better user interface. 
+  To do this, we first had to locate the section of code that says 
+  "button" and "text="save"" which entails the specific code that we 
+  are looking to edit. This specific section of code for the save 
+  button was then copied. The section of code for the first tab was 
+  located and a new row was made for this section on row 13, column 
+  0. By determining where the code was located for the first tab, we 
+  could insert the code for the save button into this section of code
+  and align it correctly so that it is a functional save button. 
+  Aligning the code correctly is where most of the troubleshooting 
+  occured, but after toying with it, the correct position was 
+  determined and the save button worked properly on the first tab. 
+  The most difficult part of this project was determining what 
+  section of code was responsible for the save button and where the 
+  code of the first tab was located. After consolidating with my 
+  partner Riley, and finding these specific code chunks, the rest of 
+  the project was self explanatory assuming we simply moved the save 
+  button code into the first tab code section. After this, 
+  determining the correct position of the code took some 
+  troubleshooting but by testing it in different locations, we were 
+  able to determine the location that the button code had to be in 
+  for it to work properly.
+
