@@ -1,0 +1,21 @@
+---
+title: "DavidsFinalNotebook"
+output: html_document
+---
+
+
+For our project, our team split into three separate groups to create/improve various features of the enzyme kinetics lab report code for the biochemistry lab on RStudio. Catherine Oakley and I were tasked with creating and implementing a feature that allowed the slope to be calculated based on the inputted experimental data from the lab. The equation was also displayed on the Michaelis-Menten graph. The code calculated the Km and the maximum velocity of each substrate and used those values to calculate the final slope. The coordinates of where the equation is displayed on the graph can be adjusted by the user to allow for the best placement. We consulted a software engineering student for assistance as well as doing extensive online research to create our initial code. The initial code required that the Km the Vmax values be taken from the console. Dr. Malmberg helped us improve the code to make the final product much more convenient and easier to use by allowing the code to automatically calculate these values. The code we created is displayed below.
+
+gsub("Vmax", coef(LDopafit)[["Vmax"]], "V0=(Vmax[Concentration])/(1.323e-07+[Concentration])" )
+LDopaLabel <- gsub("Vmax", round(coef(LDopafit)[["Vmax"]], digits=11), "V0=(Vmax[Concentration])/(Km+[Concentration])" )
+gsub("Km", coef(LDopafit)[["Km"]],  LDopaLabel)
+LDopaLabel <- gsub("Km", round(coef(LDopafit)[["Km"]],  digits=11), LDopaLabel)
+text(4e-06,2.5e-07,label= LDopaLabel)
+
+
+gsub("Vmax", coef(DDopafit)[["Vmax"]], "V0=(Vmax[Concentration])/(1.902e-06+[Concentration])")
+DDopaLabel <- gsub("Vmax", round(coef(DDopafit)[["Vmax"]], digits = 11),"V0=(Vmax[Concentration])/(Km+[Concentration])")
+gsub("Km", coef(DDopafit)[["Km"]], DDopaLabel)
+DDopaLabel <- gsub("Km", round(coef(DDopafit)[["Km"]],  digits=11), DDopaLabel)
+text(4e-06,6.7e-07, label= DDopaLabel)
+
