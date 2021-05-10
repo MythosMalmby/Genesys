@@ -1,0 +1,20 @@
+---
+title: "CatherinesFinalNotebook"
+output: html_document
+---
+
+Catherine
+My group was split up into three different groups to improve three different aspects of the Enzyme Kinetics lab report from Dr.Malmberg’s biochemistry lab. With the help of Dr. Malmberg I created a code that was able to use data collected experimentally of the L-Dopa and D-Dopa substrates to calculate a value for the Michaelis Menten constant and the maximum velocity for each substrate. Then it displayed the calculated equation on the graph. The coordinates of the location that the equation will be displayed on the graph can be adjusted by the user to provide the best placement for the equation. David and I got help from a software engineer student to assist us in creating our initial code that pulled the calculated Km and Vmax values from the console. However, Dr. Malmberg was able to help us revise this code so that the calculated values could be displayed automatically on the graph without the user having to find it in the console. I have attached the added code below. 
+
+gsub("Vmax", coef(LDopafit)[["Vmax"]], "V0=(Vmax[Concentration])/(1.323e-07+[Concentration])" )
+LDopaLabel <- gsub("Vmax", round(coef(LDopafit)[["Vmax"]], digits=11), "V0=(Vmax[Concentration])/(Km+[Concentration])" )
+gsub("Km", coef(LDopafit)[["Km"]],  LDopaLabel)
+LDopaLabel <- gsub("Km", round(coef(LDopafit)[["Km"]],  digits=11), LDopaLabel)
+text(4e-06,2.5e-07,label= LDopaLabel)
+
+
+gsub("Vmax", coef(DDopafit)[["Vmax"]], "V0=(Vmax[Concentration])/(1.902e-06+[Concentration])")
+DDopaLabel <- gsub("Vmax", round(coef(DDopafit)[["Vmax"]], digits = 11),"V0=(Vmax[Concentration])/(Km+[Concentration])")
+gsub("Km", coef(DDopafit)[["Km"]], DDopaLabel)
+DDopaLabel <- gsub("Km", round(coef(DDopafit)[["Km"]],  digits=11), DDopaLabel)
+text(4e-06,6.7e-07, label= DDopaLabel)
